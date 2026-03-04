@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Core-Business | Invoices</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-white text-black h-screen flex">
+    <nav class="w-64 h-full border-r border-gray-200 flex flex-col">
+        <div class="p-8 font-bold text-lg tracking-tight">CORE-BUSINESS</div>
+        <div class="flex-1">
+            <a href="index.html" class="w-full flex items-center px-8 py-4 text-sm hover:bg-gray-50">POS Terminal</a>
+            <a href="invoice.html" class="bg-gray-50 border-l-4 border-black w-full flex items-center px-8 py-4 text-sm font-bold">Invoices</a>
+            <a href="customers.html" class="w-full flex items-center px-8 py-4 text-sm hover:bg-gray-50">Customers</a>
+            <a href="history.html" class="w-full flex items-center px-8 py-4 text-sm hover:bg-gray-50">History</a>
+        </div>
+    </nav>
+    <main class="flex-1 p-10 bg-gray-50">
+        <div class="max-w-3xl mx-auto bg-white border border-gray-200 p-16 shadow-sm">
+            <div class="flex justify-between mb-12">
+                <h1 class="text-4xl font-bold">INVOICE</h1>
+                <div class="text-right">
+                    <p class="font-bold">Core-Business</p>
+                    <p class="text-gray-500 text-sm">Cash Only Establishment</p>
+                </div>
+            </div>
+            <input type="text" placeholder="Bill To: Customer Name" class="w-full border-b py-2 mb-8 outline-none focus:border-black">
+            <table class="w-full mb-10">
+                <tr class="border-b-2 border-black text-xs uppercase font-bold"><th class="text-left py-2">Description</th><th class="text-right py-2">Amount</th></tr>
+                <tr><td class="py-4 border-b border-gray-100"><input class="w-full outline-none" placeholder="Item name"></td><td class="text-right py-4 border-b border-gray-100">$0.00</td></tr>
+            </table>
+            <div class="text-right space-y-2">
+                <p>Tax: 6%</p>
+                <p class="text-2xl font-bold uppercase">Total Due (Cash)</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
