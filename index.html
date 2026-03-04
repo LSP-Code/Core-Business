@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core-Business | POS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: -apple-system, sans-serif; }
+        .btn-black { background-color: #000; color: #fff; border-radius: 2px; }
+        .active-nav { border-left: 4px solid #000; background-color: #f9fafb; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-white text-black h-screen flex overflow-hidden">
+    <nav class="w-64 h-full border-r border-gray-200 flex flex-col">
+        <div class="p-8 flex items-center gap-3">
+            <div class="w-10 h-10 bg-black flex items-center justify-center rounded-sm"><div class="w-4 h-4 border-2 border-white"></div></div>
+            <h1 class="font-bold text-lg tracking-tight">CORE-BUSINESS</h1>
+        </div>
+        <div class="flex-1 mt-4">
+            <a href="index.html" class="active-nav w-full flex items-center px-8 py-4 text-sm"><i class="fa-solid fa-cash-register mr-4 w-5"></i> POS Terminal</a>
+            <a href="invoice.html" class="w-full flex items-center px-8 py-4 text-sm hover:bg-gray-50"><i class="fa-solid fa-file-invoice mr-4 w-5"></i> Invoices</a>
+            <a href="customers.html" class="w-full flex items-center px-8 py-4 text-sm hover:bg-gray-50"><i class="fa-solid fa-users mr-4 w-5"></i> Customers</a>
+            <a href="history.html" class="w-full flex items-center px-8 py-4 text-sm hover:bg-gray-50"><i class="fa-solid fa-clock-rotate-left mr-4 w-5"></i> History</a>
+        </div>
+    </nav>
+
+    <main class="flex-1 flex overflow-hidden">
+        <div class="flex-1 p-10 overflow-y-auto">
+            <h2 class="text-3xl font-light mb-10">Register</h2>
+            <div class="grid grid-cols-3 gap-6">
+                <div onclick="addToCart('Standard Item', 20.00)" class="border border-gray-200 p-8 cursor-pointer hover:border-black transition-all">
+                    <p class="font-bold">Standard Item</p>
+                    <p class="text-gray-500">$20.00</p>
+                </div>
+                <div onclick="addToCart('Premium Service', 100.00)" class="border border-gray-200 p-8 cursor-pointer hover:border-black transition-all">
+                    <p class="font-bold">Premium Service</p>
+                    <p class="text-gray-500">$100.00</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-96 border-l border-gray-200 bg-gray-50 flex flex-col">
+            <div class="p-8 flex-1" id="cart-list">
+                <p class="text-gray-400 text-center mt-10">Empty Cart</p>
+            </div>
+            <div class="p-8 bg-white border-t border-gray-200 space-y-2">
+                <div class="flex justify-between text-sm text-gray-500"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+                <div class="flex justify-between text-sm text-gray-500"><span>Tax (6%)</span><span id="tax">$0.00</span></div>
+                <div class="flex justify-between text-2xl font-bold py-4"><span>Total</span><span id="total">$0.00</span></div>
+                <button class="w-full btn-black py-4 font-bold uppercase tracking-widest">Tender Cash</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let cart = [];
+        function addToCart(name, price) {
+            cart.push({name, price});
+            render();
+        }
+        function render() {
+            const list = document.getElementById('cart-list');
+            list.innerHTML = cart.map(item => `<div class="flex justify-between border-b py-2 text-sm"><span>${item.name}</span><span>$${item.price.toFixed(2)}</span></div>`).join('');
+            let sub = cart.reduce((a, b) => a + b.price, 0);
+            let tax = sub * 0.06;
+            document.getElementById('subtotal').innerText = `$${sub.toFixed(2)}`;
+            document.getElementById('tax').innerText = `$${tax.toFixed(2)}`;
+            document.getElementById('total').innerText = `$${(sub + tax).toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
